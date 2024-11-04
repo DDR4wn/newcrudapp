@@ -18,6 +18,7 @@
 
             {{--            @csrf generates token to protect against unwanted attacker requests--}}
             @csrf
+
 {{--            browser sends it as post request because html doesn't support put, but laravel can understand its actually a put--}}
             @method('PUT')
             <div class="mb-4">

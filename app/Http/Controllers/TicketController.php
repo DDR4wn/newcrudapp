@@ -7,24 +7,48 @@ use Illuminate\Http\Request;
 use App\Models\Ticket;
 class TicketController extends Controller
 {
+    /**
+     * Finds all tickets within ticket table and passes them to the index view as an array where they're displayed.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function index()
     {
         $ticketsFound = Ticket::all();
         return view('index', compact('ticketsFound'));
     }
 
+    /**
+     * Navigates by ticket id to the edit ticket form.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function edit($id)
     {
         $ticket = Ticket::findOrFail($id);
         return view('edit', compact('ticket'));
     }
 
+    /**
+     * Navigates to a display of the ticket which belongs to the id.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function show($id)
     {
         $ticket = Ticket::findOrFail($id);
         return view('show', compact('ticket'));
     }
 
+    /**
+     * Validates given form data and looks for matching id in database. If found, updates the desired values.
+     * Redirects user to the show page of the now updated ticket.
+     *
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
 
@@ -42,11 +66,22 @@ class TicketController extends Controller
 
     }
 
+    /**
+     * navigates to form for creating a new ticket.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Foundation\Application
+     */
     public function create()
     {
-        return view('create'); // Create a view for the create page
+        return view('create');
     }
 
+    /**
+     * Validates user-entered information, adds timestamp of creation and stores the newly created ticket in the database.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -61,11 +96,7 @@ class TicketController extends Controller
 
         return redirect()->route('tickets.index');
     }
-
-    public function destroy($id){
-        //
-    }
 }
 
 //insert into tickets(titel, omschrijving, uitgevoerd_op, aangemaakt_op)
-//    VALUES  ('bol.com, koppeling', 'Bol.com wil graag een API koppeling.', null, '2022-08-12');
+//VALUES  ('bol.com, koppeling', 'Bol.com wil graag een API koppeling.', null, '2022-08-12');
