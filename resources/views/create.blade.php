@@ -21,7 +21,7 @@
             </div>
             <div class="mb-4">
                 <label for="omschrijving" class="block font-bold mb-1">Omschrijving:</label>
-                <textarea id="omschrijving" name="omschrijving" class="border rounded w-full p-2" required></textarea>
+                <textarea id="omschrijving" name="omschrijving" class="border rounded w-full p-2"></textarea>
             </div>
             <button type="submit" class="mt-4 bg-blue-600 text-white py-2 px-4 rounded">Create Ticket</button>
             <a href="{{ route('tickets.index') }}" class="mt-4 bg-gray-600 text-white py-2 px-4 rounded">Back to List</a>

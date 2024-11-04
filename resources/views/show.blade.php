@@ -15,7 +15,7 @@
         <div class="text-gray-700">
             <p><span class="font-bold">Ticket ID:</span> {{ $ticket->id }}</p>
             <p><span class="font-bold">Titel:</span> {{ $ticket->titel }}</p>
-            <p><span class="font-bold">Omschrijving:</span> {{ $ticket->omschrijving }}</p>
+            <p><span class="font-bold">Omschrijving:</span> {{ $ticket->omschrijving ? $ticket->omschrijving : '-' }}</p>
             <p><span class="font-bold">Aangemaakt Op:</span> {{ $ticket->aangemaakt_op }}</p>
             <p><span class="font-bold">Uitgevoerd Op:</span> {{ $ticket->uitgevoerd_op ? $ticket->uitgevoerd_op : '-' }}</p>
         </div>

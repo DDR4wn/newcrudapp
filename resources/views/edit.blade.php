@@ -30,7 +30,7 @@
             </div>
             <div class="mb-4">
                 <label for="omschrijving" class="block font-bold mb-1">Omschrijving:</label>
-                <textarea id="omschrijving" name="omschrijving" class="border rounded w-full p-2" required>{{ $ticket->omschrijving }}</textarea>
+                <textarea id="omschrijving" name="omschrijving" class="border rounded w-full p-2">{{ $ticket->omschrijving }}</textarea>
             </div>
             <div class="mb-4">
                 <p><span class="text-gray-700 block font-bold mb-1">Aangemaakt op: </span>{{ $ticket->aangemaakt_op }}</p>
