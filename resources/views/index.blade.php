@@ -6,31 +6,35 @@
     <title>Ticket List</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body style="background-color: #DEF2C8;">
+<body class="bg-[#DEF2C8]">
 <header class="text-gray-800 font-bold p-4">Ticket system</header>
-<main class="flex items-center justify-center min-h-screen">
+
+<main class="flex flex-col items-center justify-center min-h-screen">
+{{-- table which shows all entries from tickets table in db. --}}
     <table class="text-gray-800 font-semibold border-collapse border rounded-lg shadow-lg overflow-hidden">
         <thead>
         <tr>
-            <th class="border border-gray-300 bg-[#A9B2AC] text-white p-4">Ticket ID</th>
-            <th class="border border-gray-300 bg-[#A9B2AC] text-white p-4">Titel</th>
-{{--            <th class="border border-gray-300 bg-[#A9B2AC] text-white p-4">Omschrijving</th>--}}
-            <th class="border border-gray-300 bg-[#A9B2AC] text-white p-4">Aangemaakt Op</th>
-{{--            <th class="border border-gray-300 bg-[#A9B2AC] text-white p-4">Uitgevoerd Op</th>--}}
+            <th class="border-gray-300 bg-[#A9B2AC] text-white p-4">Ticket ID</th>
+            <th class="border-gray-300 bg-[#A9B2AC] text-white p-4">Titel</th>
+            <th class="border-gray-300 bg-[#A9B2AC] text-white p-4">Aangemaakt Op</th>
         </tr>
         </thead>
         <tbody>
         @foreach($ticketsFound as $ticket)
-            <tr class="bg-[#C5DAC1] even:bg-[#BCD0C7]">
+            @if(is_null($ticket->uitgevoerd_op))
+            <tr class="bg-[#C5DAC1] even:bg-[#BCD0C7] cursor-pointer hover:opacity-75"
+                onclick="window.location='{{ route('tickets.show', $ticket->id) }}'">
                 <td class="border border-gray-300 p-4">{{ $ticket->id }}</td>
                 <td class="border border-gray-300 p-4">{{ $ticket->titel }}</td>
-                <!-- <td class="border border-gray-300 p-4">{{ $ticket->omschrijving }}</td> -->
                 <td class="border border-gray-300 p-4">{{ $ticket->aangemaakt_op }}</td>
-{{--                <td class="border border-gray-300 p-4">{{ $ticket->uitgevoerd_op }}</td>--}}
             </tr>
+            @endif
         @endforeach
         </tbody>
     </table>
+
+{{--   Button redirects to create ticket form page. --}}
+    <a href="{{ route('tickets.create') }}" class="mt-6 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">Create New Ticket</a>
 </main>
 
 <footer class="text-center text-gray-600 py-4 mt-6">
